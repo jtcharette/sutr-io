@@ -7,9 +7,7 @@ import com.intellij.psi.tree.IElementType;
 import com.slalom.aws.avs.sutr.actions.ActionUtil;
 import com.slalom.aws.avs.sutr.parser.SutrPsiCompositeElement;
 import com.slalom.aws.avs.sutr.psi.*;
-import com.slalom.aws.avs.sutr.psi.impl.SutrLiteralPhrasesImpl;
-import com.slalom.aws.avs.sutr.psi.impl.SutrSlotImpl;
-import com.slalom.aws.avs.sutr.psi.impl.SutrTypeNameImpl;
+import com.slalom.aws.avs.sutr.psi.impl.*;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Map;
@@ -98,7 +96,14 @@ public class SutrAnnotator implements Annotator {
     }
 
     private void validateCustomTypeItem(final @NotNull PsiElement psiElement, final @NotNull AnnotationHolder annotationHolder) {
-
+        final SutrCustomTypeItems customTypeItems = ((SutrCustomTypeItemsImpl) psiElement.getParent().getParent());
+        for (final SutrCustomTypeItem customTypeItem : customTypeItems.getCustomTypeItemList()) {
+            final boolean textMatch = customTypeItem.getText().trim().equals(psiElement.getText().trim());
+            final boolean nodeMatch = customTypeItem.getNode().equals(psiElement.getParent().getNode());
+            if (textMatch && !nodeMatch) {
+                annotationHolder.createErrorAnnotation(psiElement, "Duplicate Custom Type Item");
+            }
+        }
         annotationHolder.createInfoAnnotation(psiElement, null).setTextAttributes(SutrSyntaxHighlighter.CUSTOM_TYPE_ITEM);
     }
 
