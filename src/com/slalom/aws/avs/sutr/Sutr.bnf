@@ -78,7 +78,8 @@ function_name ::= (NAME|WORD|FUNCTION_IDENTIFIER)
 type_name ::= NAME|IDENTIFIER
 {extends="com.slalom.aws.avs.sutr.psi.impl.SutrTypeReferenceImpl" implements="com.slalom.aws.avs.sutr.psi.SutrTypeReference" methods=[getParentSutr]}
 
-sutr_name ::= NAME
+// Allow "." and "_" for intent names to support intents such as AMAZON.StopIntent and AMAZON.CancelIntent
+sutr_name ::= (NAME|IDENTIFIER|FUNCTION_IDENTIFIER)
 slot_name ::= NAME {methods=[getParentSutr]}
 
 param_name ::= NAME

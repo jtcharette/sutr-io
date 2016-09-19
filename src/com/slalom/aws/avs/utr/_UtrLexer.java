@@ -52,8 +52,8 @@ public class _UtrLexer implements FlexLexer {
 
   /* The ZZ_CMAP_A table has 256 entries */
   static final char ZZ_CMAP_A[] = zzUnpackCMap(
-    "\11\0\1\3\1\2\1\0\1\3\1\1\22\0\1\3\6\0\1\4\31\0\32\5\4\0\1\6\1\0\32\5\1\7"+
-    "\1\11\1\10\202\0");
+    "\11\0\1\3\1\2\1\0\1\3\1\1\22\0\1\3\6\0\1\4\6\0\1\6\22\0\32\5\4\0\1\6\1\0\32"+
+    "\5\1\7\1\11\1\10\202\0");
 
   /** 
    * Translates DFA states to action switch labels.

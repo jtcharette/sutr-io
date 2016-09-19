@@ -24,7 +24,7 @@ WHITE_SPACE=({LINE_WS}|{EOL})+
 
 WORD=[a-zA-Z']+
 NAME=[a-zA-Z]+
-IDENTIFIER=[a-zA-Z_]+
+IDENTIFIER=[a-zA-Z_\.]+
 %state YYUTTERANCE
 
 %%
