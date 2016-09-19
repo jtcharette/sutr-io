@@ -62,7 +62,7 @@ literal_phrase ::= PHRASE
 object ::= 'def' sutr_name sutr_params body function_pointer {pin=3}
 
 sutr_params ::= '(' param (',' param)* ')' | '(' param? ')'
-param ::= type_name param_name {methods=[getParentSutr getDefaultValue]}
+param ::= (LINE_WS|EOL)* type_name param_name (LINE_WS|EOL)* {methods=[getParentSutr getDefaultValue]}
 
 body ::= '{' (utterance|EOL|LINE_WS)* '}'
 utterance ::= ( utterance_part | slot)+ EOL
